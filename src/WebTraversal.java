@@ -13,7 +13,7 @@ public class WebTraversal implements Traversal {
 	}
 
 	public void traverseWeb() {
-
+		//Set current URL so that it can be used in LinkFormatting!!!
 	}
 
 	private void addToLists(Iterator<String> foundLinks) {

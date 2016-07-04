@@ -1,10 +1,13 @@
 import static org.junit.Assert.*;
 
+import java.net.URL;
+
 import org.junit.Test;
 
 
 public class LinkFormattingTest {
 
+	
 	@Test
 	public void test() {
 		LinkFormatting lf = new LinkFormatting();
@@ -18,10 +21,12 @@ public class LinkFormattingTest {
 		assertFalse(lf.hasProtocol("www.neumont.edu"));
 		
 		
-		assertTrue(lf.hasBackslash("http://www.google.com"));
-		assertTrue(lf.hasBackslash("https://mail.student.neumont.edu"));
-		assertFalse(lf.hasBackslash("www.google.com"));
-		assertFalse(lf.hasBackslash("www.neumont.edu"));
+		assertTrue(lf.hasForwardslash("/academics"));
+		assertTrue(lf.hasForwardslash("/degree/index.html"));
+		assertFalse(lf.hasForwardslash("www.google.com"));
+		assertFalse(lf.hasForwardslash("www.neumont.edu"));
+		
+		
 		
 	}
 
