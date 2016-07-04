@@ -1,5 +1,5 @@
 import java.util.Iterator;
-
+//hasHost,hasProtocol,and hasBackslash need to be turned back into public methods for testing!!!
 
 public class LinkFormatting {
 	
