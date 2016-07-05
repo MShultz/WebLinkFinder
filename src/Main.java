@@ -9,11 +9,12 @@ import java.util.Iterator;
 public class Main {
 
 	public static void main(String[] args) {
+		WebTraversal traverse = new WebTraversal("http://www.neumont.edu", 25);
+		traverse.traverseWeb();
 		
 		
 		
-		/*
-		Extra test for FormatLinks method!
+	/*Extra test for FormatLinks method!
 		 
 		LinkFormatting lf = new LinkFormatting();
 		ArrayList<String> test = new ArrayList<String>();
@@ -25,7 +26,7 @@ public class Main {
 		test.add("http://www.wee.com/brah");
 		try {
 			URL testURL = new URL("https://www.reddit.com");
-			formatted = lf.FormatLinks(test.iterator(), testURL);
+			formatted = lf.formatLinks(test.iterator(), testURL);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

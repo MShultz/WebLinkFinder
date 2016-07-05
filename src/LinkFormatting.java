@@ -29,7 +29,7 @@ public class LinkFormatting {
 	}
 
 	private boolean hasHost(String basicURL) {
-		String hostPattern = "www\\.(.*)\\..{3}";
+		String hostPattern = "(.*)\\.(.*)\\..{3}";
 		Pattern p = Pattern.compile(hostPattern);
 		Matcher m = p.matcher(basicURL);
 		return m.find();
