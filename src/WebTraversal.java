@@ -21,10 +21,14 @@ public class WebTraversal implements Traversal {
 		LinkFinder finder = new LinkFinder();
 		do {
 			String currentPage = foundPages.get(visitedPages.size());
-			setURL(currentPage);
+			try {
+				currentPageURL = new URL(currentPage);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			setURL(currentPageURL);
 			finder.processPage(createInputStream(currentPage));
 			addToHasVisited(currentPage);
-			System.out.println("Visited: " + currentPage);
 			addToFoundList(formatter.formatLinks(finder.getLinks(),
 					currentPageURL));
 		} while (visitedPages.size() < maxVisits && !visitedEqualsFound());
@@ -36,7 +40,6 @@ public class WebTraversal implements Traversal {
 				String currentFoundLink = foundLinks.next();
 				if (!hasFound(currentFoundLink)) {
 					foundPages.add(currentFoundLink);
-					System.out.println("Found: " + currentFoundLink);
 				}
 			} while (foundLinks.hasNext());
 		}
@@ -75,12 +78,8 @@ public class WebTraversal implements Traversal {
 		return hasFound;
 	}
 
-	public void setURL(String formatted) {
-		try {
-			currentPageURL = new URL(formatted);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
+	public void setURL(URL url) {
+		System.out.println("Visited: " + url.toString());
 	}
 
 	private void addToHasVisited(String URL) {

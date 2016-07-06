@@ -10,7 +10,9 @@ public class LinkFormatting {
 	public Iterator<String> formatLinks(Iterator<String> barebonesURLs,
 			URL currentPage) {
 		ArrayList<String> formattedLinks = new ArrayList<String>();
-		while (barebonesURLs.hasNext()) {
+		if(barebonesURLs.hasNext())
+	  {
+			do{
 			String currentURL = barebonesURLs.next();
 			if (!hasHost(currentURL)) {
 				if (hasForwardslash(currentURL)) {
@@ -24,6 +26,7 @@ public class LinkFormatting {
 				currentURL = currentPage.getProtocol() + "://" + currentURL;
 			}
 			formattedLinks.add(currentURL);
+			}while(barebonesURLs.hasNext());
 		}
 		return formattedLinks.iterator();
 	}

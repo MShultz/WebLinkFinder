@@ -1,4 +1,6 @@
+import java.net.URL;
+
 
 public interface Traversal {
-	public void setURL(String formatted);
+	public void setURL(URL url);
 }
