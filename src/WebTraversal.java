@@ -1,6 +1,4 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,7 +24,7 @@ public class WebTraversal implements Traversal {
 			setURL(currentPage);
 			finder.processPage(createInputStream(currentPage));
 			addToHasVisited(currentPage);
-//			System.out.println("Visited: " + currentPage);
+			System.out.println("Visited: " + currentPage);
 			addToFoundList(formatter.formatLinks(finder.getLinks(),
 					currentPageURL));
 		} while (visitedPages.size() < maxVisits && !visitedEqualsFound());
@@ -38,7 +36,7 @@ public class WebTraversal implements Traversal {
 				String currentFoundLink = foundLinks.next();
 				if (!hasFound(currentFoundLink)) {
 					foundPages.add(currentFoundLink);
-//					System.out.println("Found: " + currentFoundLink);
+					System.out.println("Found: " + currentFoundLink);
 				}
 			} while (foundLinks.hasNext());
 		}
@@ -63,12 +61,8 @@ public class WebTraversal implements Traversal {
 		InputStream stream = null;
 		try {
 			currentURL = new URL(URL);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		try {
 			stream = currentURL.openStream();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return stream;
@@ -76,10 +70,8 @@ public class WebTraversal implements Traversal {
 
 	private boolean hasFound(String URL) {
 		boolean hasFound = false;
-		for (String s : foundPages) {
-			if (s.equalsIgnoreCase(URL) || URL.equalsIgnoreCase(s + "/"))
-				hasFound = true;
-		}
+		if(foundPages.contains(URL) || foundPages.contains(URL.substring(0, URL.length()-1)))
+			hasFound = true;
 		return hasFound;
 	}
 
